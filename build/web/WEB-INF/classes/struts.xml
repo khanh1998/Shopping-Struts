@@ -1,0 +1,86 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" extends="struts-default" namespace="/">
+        <action name="">
+            <result>login.html</result>
+        </action>
+        <action name="try">
+            <result>login.html</result>
+        </action>
+        <action name="addNewMobilePage">
+            <result>addNewMobile.html</result>
+        </action>
+        <action name="logout" class="sample.struts.Logout">
+            <result type="redirectAction">
+                <param name="actionName">try</param>
+            </result>
+        </action>
+        <action name="staffSearchPage">
+            <result>staff.jsp</result>
+        </action>
+        <action name="customerSearchPage">
+            <result>customer.jsp</result>
+        </action>
+        <action name="staffSearchAction" class="sample.struts.StaffSearchAction">
+            <result name="success">staff.jsp</result>
+        </action>
+        <action name="customerSearchAction" class="sample.struts.CustomerSearchAction">
+            <result>customer.jsp</result>
+            <result name="input">customer.jsp</result>
+        </action>
+        <action name="updateMobile" class="sample.struts.UpdateMobileAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">staffSearchAction</param>
+                <param name="searchValue">${lastSearchValue}</param>
+            </result>
+            <result name="fail" type="redirect">error.html</result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">staffSearchAction</param>
+                <param name="searchValue">${lastSearchValue}</param>
+            </result>
+        </action>
+        <action name="deleteMobile" class="sample.struts.DeleteMobileAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">staffSearchAction</param>
+                <param name="searchValue">${lastSearchValue}</param>
+            </result>
+            <result name="fail" type="redirect">error.html</result>
+        </action>
+        <action name="addNewMobile" class="sample.struts.AddNewMobileAction">
+            <exception-mapping exception="java.sql.SQLException" result="fail"/>
+            <result name="success" type="redirect">addNewMobile.html</result>
+            <result name="fail">addNewMobile.jsp</result>
+            <result name="input">addNewMobile.jsp</result>
+        </action>
+        <action name="login" class="sample.struts.LoginAction">
+            <result name="customer">customer.jsp</result>
+            <result name="staff">staff.jsp</result>
+            <result name="fail">invalid.html</result>
+        </action>
+        <action name="addToCart" class="sample.struts.AddToCartAction">
+            <result name="success" type="redirectAction">
+                <param name="actionName">customerSearchAction</param>
+                <param name="minPrice">${lastMinPrice}</param>
+                <param name="maxPrice">${lastMaxPrice}</param>
+            </result>
+        </action>
+        <action name="viewCart" class="sample.struts.ViewCartAction">
+            <result name="success">viewCart.jsp</result>
+        </action>
+        <action name="removeFromCart" class="sample.struts.RemoveFromCartAction">
+            <result type="redirectAction">
+                <param name="actionName">viewCart</param>
+                <param name="lastMinPrice">${lastMinPrice}</param>
+                <param name="lastMaxPrice">${lastMaxPrice}</param>
+            </result>
+        </action>
+        <action name="checkOut" class="sample.struts.CheckOutAction">
+            <result name="success" type="redirect">customer.jsp</result>
+            <result name="fail">error.html</result>
+        </action>
+     </package>
+</struts>

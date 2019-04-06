@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+    <field name="mobileId">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>Mobile id is requied</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="maxLength">10</param>
+            <param name="minLength">2</param>
+            <message>Length of mobileid is 2-10 characters</message>
+        </field-validator>
+    </field>
+    <field name="description">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>Description is requied</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">5</param>
+            <param name="maxLength">250</param>
+            <message>Length of description is 5-250 characters</message>
+        </field-validator>
+    </field>
+    <field name="price">
+        <field-validator type="required">
+            <message>Price is required</message>
+        </field-validator>
+        <field-validator type="double">
+            <param name="minInclusive">0</param>
+            <param name="maxInclusive">2147483647</param>
+            <message>Too large</message>
+        </field-validator>
+    </field>
+    <field name="mobileName">
+        <field-validator type="requiredstring">
+            <param name="trim">true</param>
+            <message>Mobile name is requied</message>
+        </field-validator>
+        <field-validator type="stringlength">
+            <param name="minLength">4</param>
+            <param name="maxLength">20</param>
+            <message>Length of mobile name is 4 - 20 character</message>
+        </field-validator>
+    </field>
+    <field name="yearOfProduction">
+        <field-validator type="required">
+            <message>Year is required</message>
+        </field-validator>
+        <field-validator type="int">
+            <param name="min">0</param>
+            <message>Year must be larger or equal to zero</message>
+        </field-validator>
+    </field>
+    <field name="quantity">
+        <field-validator type="required">
+            <message>Quantity is required</message>
+        </field-validator>
+        <field-validator type="int">
+            <param name="min">0</param>
+            <message>Quantity must be larger or equal to zero</message>
+        </field-validator>
+    </field>
+</validators>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE validators PUBLIC
+  		"-//Apache Struts//XWork Validator 1.0.3//EN"
+  		"http://struts.apache.org/dtds/xwork-validator-1.0.3.dtd">
+<validators>
+    <field name="minPrice">
+        <field-validator type="required">
+            <message>You must type min price</message>
+        </field-validator>
+        <field-validator type="double">
+            <param name="minInclusive">0</param>
+            <param name="maxInclusive">2417483647</param>
+            <message>Price must be a positive float</message>
+        </field-validator>
+    </field>
+    <field name="maxPrice">
+        <field-validator type="required">
+            <message>You must type max price</message>
+        </field-validator>
+        <field-validator type="double">
+            <param name="minInclusive">0</param>
+            <param name="maxInclusive">2417483647</param>
+            <message>Price must be a positive float</message>
+        </field-validator>
+        <field-validator type="fieldexpression">
+            <param name="expression">maxPrice>=minPrice</param>
+            <message>Max price must larger than or equal min price</message>
+        </field-validator>
+    </field>
+</validators>
